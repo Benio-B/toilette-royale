@@ -9,10 +9,10 @@ interface CriteriaRowProps {
 }
 
 const CriteriaRow: React.FC<CriteriaRowProps> = ({ label, objective, weight, tooltip }) => (
-  <tr className="group">
+  <tr>
     <td className="py-1 flex items-center gap-1">
       {label}
-      <div className="relative">
+      <div className="relative group">
         <Info className="h-4 w-4 text-purple-400 cursor-help" />
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-10">
           {tooltip}

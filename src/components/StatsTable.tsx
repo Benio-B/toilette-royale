@@ -41,7 +41,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
 
 export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
   return (
-    <div className="overflow-x-auto -mx-6 px-6">
+    <div className="-mx-6 px-6">
       <div className="inline-block min-w-full align-middle">
         <table className="w-full">
           <thead>
