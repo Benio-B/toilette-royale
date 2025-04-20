@@ -3,17 +3,18 @@ import { ToiletPaperForm } from '../components/ToiletPaperForm';
 import { ToiletPaperList } from '../components/ToiletPaperList';
 import { ImportExportButtons } from '../components/ImportExportButtons';
 import { ToiletPaper } from '../types';
+import {getRepository} from "../repository/repository.ts";
 
 export const ManagementPage = () => {
   const [papers, setPapers] = useState<ToiletPaper[]>(() => {
-    const saved = localStorage.getItem('toiletPapers');
-    return saved ? JSON.parse(saved) : [];
+    const saved = getRepository().getToiletPapers();
+    return saved ? saved : [];
   });
 
   const [editingPaper, setEditingPaper] = useState<ToiletPaper | null>(null);
 
   useEffect(() => {
-    localStorage.setItem('toiletPapers', JSON.stringify(papers));
+    getRepository().savePapers({ papers })
   }, [papers]);
 
   const handleAdd = (paper: ToiletPaper) => {

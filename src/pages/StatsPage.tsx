@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Stats } from '../components/Stats';
 import { ToiletPaper } from '../types';
+import {getRepository} from "../repository/repository.ts";
 
 export const StatsPage = () => {
   const [papers, setPapers] = useState<ToiletPaper[]>(() => {
-    const saved = localStorage.getItem('toiletPapers');
-    return saved ? JSON.parse(saved) : [];
+    const saved = getRepository().getToiletPapers();
+    return saved ? saved : [];
   });
 
   useEffect(() => {
     const handleStorageChange = () => {
-      const saved = localStorage.getItem('toiletPapers');
+      const saved = getRepository().getToiletPapers();
       if (saved) {
-        setPapers(JSON.parse(saved));
+        setPapers(saved);
       }
     };
 

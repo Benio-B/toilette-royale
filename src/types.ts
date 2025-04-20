@@ -13,3 +13,8 @@ export interface Stats {
   averageDuration: number;
   sheetsPerDay: number;
 }
+
+export interface Db {
+  getToiletPapers: () => ToiletPaper[] | undefined;
+  savePapers: ({ papers }: {papers: ToiletPaper[]}) => void;
+}
