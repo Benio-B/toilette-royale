@@ -1,6 +1,6 @@
+import type { BrandStats } from '../utils/calculations';
+import { Info, TrendingDown, TrendingUp, Trophy } from 'lucide-react';
 import React from 'react';
-import { BrandStats } from '../utils/calculations';
-import { TrendingUp, TrendingDown, Trophy, Info } from 'lucide-react';
 
 interface Props {
   stats: BrandStats[];
@@ -32,7 +32,12 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         <Info className="h-4 w-4 text-purple-400 cursor-help" />
         <div className="absolute left-1/2 -translate-x-1/2 min-w-96 max-w-3xs mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-pre-wrap">
           {tooltip}
-          {weight && <div className="font-semibold mt-1">Poids: {weight}</div>}
+          {weight && (
+            <div className="font-semibold mt-1">
+              Poids:
+              {weight}
+            </div>
+          )}
         </div>
       </div>
     )}
@@ -119,7 +124,7 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
             </tr>
           </thead>
           <tbody>
-            {stats.map((stat) => (
+            {stats.map(stat => (
               <tr
                 key={stat.brand}
                 className="border-b border-gray-100 hover:bg-purple-50 transition-colors"
@@ -137,13 +142,15 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                 </td>
                 <td className="py-2 whitespace-nowrap">{stat.totalRolls}</td>
                 <td className="py-2 whitespace-nowrap">
-                  {stat.averagePrice.toFixed(2)}€
+                  {stat.averagePrice.toFixed(2)}
+                  €
                 </td>
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
-                    {stat.costPerRoll.toFixed(2)}€
-                    {stat.costPerRoll ===
-                      bestStats.bestCostPerRoll.costPerRoll && (
+                    {stat.costPerRoll.toFixed(2)}
+                    €
+                    {stat.costPerRoll
+                      === bestStats.bestCostPerRoll.costPerRoll && (
                       <TrendingDown className="w-4 h-4 text-green-500" />
                     )}
                   </div>
@@ -151,8 +158,8 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     {stat.rollsPerEuro.toFixed(2)}
-                    {stat.rollsPerEuro ===
-                      bestStats.bestRollsPerEuro.rollsPerEuro && (
+                    {stat.rollsPerEuro
+                      === bestStats.bestRollsPerEuro.rollsPerEuro && (
                       <TrendingUp className="w-4 h-4 text-green-500" />
                     )}
                   </div>
@@ -160,8 +167,8 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     {stat.daysPerEuro.toFixed(1)}
-                    {stat.daysPerEuro ===
-                      bestStats.bestDaysPerEuro.daysPerEuro && (
+                    {stat.daysPerEuro
+                      === bestStats.bestDaysPerEuro.daysPerEuro && (
                       <TrendingUp className="w-4 h-4 text-green-500" />
                     )}
                   </div>
@@ -169,18 +176,21 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     {stat.averageRating.toFixed(1)}
-                    {stat.averageRating ===
-                      bestStats.bestRating.averageRating && (
+                    {stat.averageRating
+                      === bestStats.bestRating.averageRating && (
                       <TrendingUp className="w-4 h-4 text-green-500" />
                     )}
                   </div>
                 </td>
                 <td className="py-2 whitespace-nowrap">
-                  {stat.averageDuration.toFixed(1)} j
+                  {stat.averageDuration.toFixed(1)}
+                  {' '}
+                  j
                 </td>
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
-                    {stat.costPerDay.toFixed(2)}€
+                    {stat.costPerDay.toFixed(2)}
+                    €
                     {stat.costPerDay === bestStats.bestValue.costPerDay && (
                       <TrendingDown className="w-4 h-4 text-green-500" />
                     )}
@@ -195,7 +205,8 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                   </div>
                 </td>
                 <td className="py-2 whitespace-nowrap">
-                  {stat.totalSpent.toFixed(2)}€
+                  {stat.totalSpent.toFixed(2)}
+                  €
                 </td>
               </tr>
             ))}

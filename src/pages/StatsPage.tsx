@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import type { ToiletPaper } from '../types';
+import { useEffect, useState } from 'react';
 import { Stats } from '../components/Stats';
-import { ToiletPaper } from '../types';
-import {getRepository} from "../repository/repository.ts";
+import { getRepository } from '../repository/repository.ts';
 
-export const StatsPage = () => {
+export function StatsPage() {
   const [papers, setPapers] = useState<ToiletPaper[]>(() => {
     const saved = getRepository().getToiletPapers();
-    return saved ? saved : [];
+    return saved || [];
   });
 
   useEffect(() => {
@@ -29,4 +29,4 @@ export const StatsPage = () => {
       <Stats papers={papers} />
     </div>
   );
-};
+}

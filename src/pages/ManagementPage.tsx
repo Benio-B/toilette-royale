@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import type { ToiletPaper } from '../types';
+import { useEffect, useState } from 'react';
+import { ImportExportButtons } from '../components/ImportExportButtons';
 import { ToiletPaperForm } from '../components/ToiletPaperForm';
 import { ToiletPaperList } from '../components/ToiletPaperList';
-import { ImportExportButtons } from '../components/ImportExportButtons';
-import { ToiletPaper } from '../types';
-import {getRepository} from "../repository/repository.ts";
+import { getRepository } from '../repository/repository.ts';
 
-export const ManagementPage = () => {
+export function ManagementPage() {
   const [papers, setPapers] = useState<ToiletPaper[]>(() => {
     const saved = getRepository().getToiletPapers();
-    return saved ? saved : [];
+    return saved || [];
   });
 
   const [editingPaper, setEditingPaper] = useState<ToiletPaper | null>(null);
 
   useEffect(() => {
-    getRepository().savePapers({ papers })
+    getRepository().savePapers({ papers });
   }, [papers]);
 
   const handleAdd = (paper: ToiletPaper) => {
@@ -22,12 +22,12 @@ export const ManagementPage = () => {
   };
 
   const handleEdit = (paper: ToiletPaper) => {
-    setPapers(papers.map((p) => (p.id === paper.id ? paper : p)));
+    setPapers(papers.map(p => (p.id === paper.id ? paper : p)));
     setEditingPaper(null);
   };
 
   const handleDelete = (id: string) => {
-    setPapers(papers.filter((p) => p.id !== id));
+    setPapers(papers.filter(p => p.id !== id));
     if (editingPaper?.id === id) {
       setEditingPaper(null);
     }
@@ -69,4 +69,4 @@ export const ManagementPage = () => {
       </div>
     </div>
   );
-};
+}

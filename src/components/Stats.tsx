@@ -1,10 +1,10 @@
+import type { ToiletPaper } from '../types';
+import { Award, Clock, Crown, DollarSign, Star, Target } from 'lucide-react';
 import React from 'react';
-import { ToiletPaper } from '../types';
-import { Crown, Star, Award, Target, DollarSign, Clock } from 'lucide-react';
 import { calculateBrandStats, findBestStats } from '../utils/calculations';
 import { AchievementCard } from './AchievementCard';
-import { StatsTable } from './StatsTable';
 import { ScoreExplanation } from './ScoreExplanation';
+import { StatsTable } from './StatsTable';
 
 interface Props {
   papers: ToiletPaper[];
@@ -20,7 +20,7 @@ const ACHIEVEMENTS = {
 };
 
 export const Stats: React.FC<Props> = ({ papers }) => {
-  const completedPapers = papers.filter((p) => p.endDate);
+  const completedPapers = papers.filter(p => p.endDate);
   const count = completedPapers.length;
 
   const playAchievementSound = () => {

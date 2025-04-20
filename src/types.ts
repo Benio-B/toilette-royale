@@ -16,5 +16,5 @@ export interface Stats {
 
 export interface Db {
   getToiletPapers: () => ToiletPaper[] | undefined;
-  savePapers: ({ papers }: {papers: ToiletPaper[]}) => void;
+  savePapers: ({ papers }: { papers: ToiletPaper[] }) => void;
 }

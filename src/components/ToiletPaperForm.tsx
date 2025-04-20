@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { ToiletPaper } from '../types';
+import type { ToiletPaper } from '../types';
 import { Star } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 interface Props {
   onSubmit: (paper: ToiletPaper) => void;
@@ -18,11 +18,11 @@ const FUNNY_PLACEHOLDERS = [
   'Le papier des champions',
 ];
 
-const formatDateTimeLocal = (isoString: string) => {
+function formatDateTimeLocal(isoString: string) {
   const storedDate = new Date(isoString);
   const offset = storedDate.getTimezoneOffset() * 60000;
   return new Date(storedDate.getTime() - offset).toISOString().slice(0, 16);
-};
+}
 
 export const ToiletPaperForm: React.FC<Props> = ({
   onSubmit,
@@ -39,7 +39,7 @@ export const ToiletPaperForm: React.FC<Props> = ({
   });
 
   const [placeholder] = useState(
-    FUNNY_PLACEHOLDERS[Math.floor(Math.random() * FUNNY_PLACEHOLDERS.length)]
+    FUNNY_PLACEHOLDERS[Math.floor(Math.random() * FUNNY_PLACEHOLDERS.length)],
   );
 
   const [confetti, setConfetti] = useState(false);
@@ -107,9 +107,8 @@ export const ToiletPaperForm: React.FC<Props> = ({
           <input
             type="text"
             value={formData.brand}
-            onChange={(e) =>
-              setFormData({ ...formData, brand: e.target.value })
-            }
+            onChange={e =>
+              setFormData({ ...formData, brand: e.target.value })}
             placeholder={placeholder}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
             required
@@ -123,9 +122,8 @@ export const ToiletPaperForm: React.FC<Props> = ({
             type="number"
             step="0.01"
             value={formData.price}
-            onChange={(e) =>
-              setFormData({ ...formData, price: e.target.value })
-            }
+            onChange={e =>
+              setFormData({ ...formData, price: e.target.value })}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
             required
           />
@@ -137,9 +135,8 @@ export const ToiletPaperForm: React.FC<Props> = ({
           <input
             type="number"
             value={formData.rollCount}
-            onChange={(e) =>
-              setFormData({ ...formData, rollCount: e.target.value })
-            }
+            onChange={e =>
+              setFormData({ ...formData, rollCount: e.target.value })}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
             required
           />
@@ -151,9 +148,8 @@ export const ToiletPaperForm: React.FC<Props> = ({
           <input
             type="datetime-local"
             value={formData.startDate}
-            onChange={(e) =>
-              setFormData({ ...formData, startDate: e.target.value })
-            }
+            onChange={e =>
+              setFormData({ ...formData, startDate: e.target.value })}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
             required
           />
@@ -165,9 +161,8 @@ export const ToiletPaperForm: React.FC<Props> = ({
           <input
             type="datetime-local"
             value={formData.endDate}
-            onChange={(e) =>
-              setFormData({ ...formData, endDate: e.target.value })
-            }
+            onChange={e =>
+              setFormData({ ...formData, endDate: e.target.value })}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
             min={formData.startDate}
           />
@@ -177,7 +172,7 @@ export const ToiletPaperForm: React.FC<Props> = ({
             Note
           </label>
           <div className="flex gap-1 mt-2">
-            {[1, 2, 3, 4, 5].map((rating) => (
+            {[1, 2, 3, 4, 5].map(rating => (
               <Star
                 key={rating}
                 className={`h-6 w-6 cursor-pointer transition-all hover:scale-125 ${

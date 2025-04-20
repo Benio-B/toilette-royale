@@ -1,14 +1,14 @@
+import { BarChart3, ClipboardList, Menu, X } from 'lucide-react';
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Logo } from './components/Logo';
 import { ManagementPage } from './pages/ManagementPage';
 import { StatsPage } from './pages/StatsPage';
-import { ClipboardList, BarChart3, Menu, X } from 'lucide-react';
 
-const Navigation = () => {
+function Navigation() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  
+
   return (
     <nav className="bg-white shadow-md mb-8">
       <div className="container mx-auto px-4">
@@ -17,17 +17,20 @@ const Navigation = () => {
             <Logo />
             <p className="text-sm text-purple-500 italic mt-1 hidden sm:block">Parce que vos fesses méritent le meilleur rapport qualité/prix</p>
           </div>
-          
+
           {/* Mobile menu button */}
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 rounded-md hover:bg-purple-50"
           >
-            {isMenuOpen ? (
-              <X className="h-6 w-6 text-purple-600" />
-            ) : (
-              <Menu className="h-6 w-6 text-purple-600" />
-            )}
+            {isMenuOpen
+              ? (
+                  <X className="h-6 w-6 text-purple-600" />
+                )
+              : (
+                  <Menu className="h-6 w-6 text-purple-600" />
+                )}
           </button>
 
           {/* Desktop navigation */}
@@ -93,7 +96,7 @@ const Navigation = () => {
       </div>
     </nav>
   );
-};
+}
 
 function App() {
   return (

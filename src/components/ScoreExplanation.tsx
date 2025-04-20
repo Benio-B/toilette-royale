@@ -1,5 +1,5 @@
-import React from 'react';
 import { Info } from 'lucide-react';
+import React from 'react';
 
 interface CriteriaRowProps {
   label: string;
@@ -82,11 +82,15 @@ export const ScoreExplanation: React.FC = () => (
         <p>Pour chaque critère :</p>
         <ol className="list-decimal list-inside space-y-1 ml-4">
           <li>Les valeurs sont standardisées entre 0 et 1</li>
-          <li>Pour les critères où "plus petit = mieux" :
-            <br /><code className="text-xs bg-purple-100 px-1">score = (max - valeur) / (max - min)</code>
+          <li>
+            Pour les critères où "plus petit = mieux" :
+            <br />
+            <code className="text-xs bg-purple-100 px-1">score = (max - valeur) / (max - min)</code>
           </li>
-          <li>Pour les critères où "plus grand = mieux" :
-            <br /><code className="text-xs bg-purple-100 px-1">score = (valeur - min) / (max - min)</code>
+          <li>
+            Pour les critères où "plus grand = mieux" :
+            <br />
+            <code className="text-xs bg-purple-100 px-1">score = (valeur - min) / (max - min)</code>
           </li>
           <li>Chaque score est multiplié par son poids</li>
           <li>Le score final est la somme des scores pondérés × 100</li>

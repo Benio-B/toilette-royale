@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import type { ToiletPaper } from '../types';
 import { Download, Upload } from 'lucide-react';
-import { ToiletPaper } from '../types';
+import React, { useRef } from 'react';
 
 interface Props {
   papers: ToiletPaper[];
@@ -28,31 +28,35 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
+    if (!file)
+      return;
 
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
         const content = e.target?.result as string;
         const importedPapers = JSON.parse(content);
-        
-        if (Array.isArray(importedPapers) && importedPapers.every(paper => 
-          typeof paper === 'object' &&
-          typeof paper.id === 'string' &&
-          typeof paper.brand === 'string' &&
-          typeof paper.price === 'number' &&
-          typeof paper.rollCount === 'number' &&
-          typeof paper.startDate === 'string' &&
-          (paper.endDate === null || typeof paper.endDate === 'string') &&
-          typeof paper.rating === 'number'
+
+        if (Array.isArray(importedPapers) && importedPapers.every(paper =>
+          typeof paper === 'object'
+          && typeof paper.id === 'string'
+          && typeof paper.brand === 'string'
+          && typeof paper.price === 'number'
+          && typeof paper.rollCount === 'number'
+          && typeof paper.startDate === 'string'
+          && (paper.endDate === null || typeof paper.endDate === 'string')
+          && typeof paper.rating === 'number',
         )) {
           onImport(importedPapers);
           const audio = new Audio('https://www.myinstants.com/media/sounds/paper-shuffle.mp3');
           audio.play();
-        } else {
+        }
+        else {
           alert('Format de fichier invalide');
         }
-      } catch (error) {
+      }
+      catch (error) {
+        console.error(error);
         alert('Erreur lors de l\'importation du fichier');
       }
     };
@@ -63,6 +67,7 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
   return (
     <div className="flex gap-4">
       <button
+        type="button"
         onClick={handleExport}
         className="flex items-center gap-2 bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-all hover:scale-105 active:scale-95"
       >
@@ -77,6 +82,7 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
         className="hidden"
       />
       <button
+        type="button"
         onClick={() => fileInputRef.current?.click()}
         className="flex items-center gap-2 bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-all hover:scale-105 active:scale-95"
       >

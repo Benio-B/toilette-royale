@@ -1,6 +1,6 @@
+import type { ToiletPaper } from '../types';
+import { Edit2, Star, Trash2 } from 'lucide-react';
 import React from 'react';
-import { ToiletPaper } from '../types';
-import { Star, Trash2, Edit2 } from 'lucide-react';
 
 interface Props {
   papers: ToiletPaper[];
@@ -9,7 +9,7 @@ interface Props {
   editingId?: string | null;
 }
 
-const formatDateTime = (dateString: string) => {
+function formatDateTime(dateString: string) {
   const date = new Date(dateString);
   return date.toLocaleString('fr-FR', {
     year: 'numeric',
@@ -18,7 +18,7 @@ const formatDateTime = (dateString: string) => {
     hour: '2-digit',
     minute: '2-digit',
   });
-};
+}
 
 export const ToiletPaperList: React.FC<Props> = ({
   papers,
@@ -28,7 +28,7 @@ export const ToiletPaperList: React.FC<Props> = ({
 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {papers.map((paper) => (
+      {papers.map(paper => (
         <div
           key={paper.id}
           className={`bg-white p-4 rounded-lg shadow-md ${
@@ -39,6 +39,7 @@ export const ToiletPaperList: React.FC<Props> = ({
             <h3 className="text-lg font-semibold">{paper.brand}</h3>
             <div className="flex gap-2">
               <button
+                type="button"
                 onClick={() => onEdit(paper)}
                 className="text-purple-500 hover:text-purple-700 transition-colors"
                 title="Modifier"
@@ -46,6 +47,7 @@ export const ToiletPaperList: React.FC<Props> = ({
                 <Edit2 className="h-5 w-5" />
               </button>
               <button
+                type="button"
                 onClick={() => onDelete(paper.id)}
                 className="text-red-500 hover:text-red-700 transition-colors"
                 title="Supprimer"
@@ -55,12 +57,28 @@ export const ToiletPaperList: React.FC<Props> = ({
             </div>
           </div>
           <div className="mt-2 space-y-1">
-            <p>Prix: {paper.price}€</p>
-            <p>{paper.rollCount} rouleaux</p>
-            <p>Début: {formatDateTime(paper.startDate)}</p>
-            {paper.endDate && <p>Fin: {formatDateTime(paper.endDate)}</p>}
+            <p>
+              Prix:
+              {paper.price}
+              €
+            </p>
+            <p>
+              {paper.rollCount}
+              {' '}
+              rouleaux
+            </p>
+            <p>
+              Début:
+              {formatDateTime(paper.startDate)}
+            </p>
+            {paper.endDate && (
+              <p>
+                Fin:
+                {formatDateTime(paper.endDate)}
+              </p>
+            )}
             <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((rating) => (
+              {[1, 2, 3, 4, 5].map(rating => (
                 <Star
                   key={rating}
                   className={`h-4 w-4 ${

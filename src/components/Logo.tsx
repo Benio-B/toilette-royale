@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
-export const Logo = () => {
+export function Logo() {
   const handleClick = () => {
     const audio = new Audio('https://www.myinstants.com/media/sounds/toilet-flush_1.mp3');
     audio.play();
@@ -17,4 +17,4 @@ export const Logo = () => {
       <span className="group-hover:animate-bounce">Toilette Royale</span>
     </Link>
   );
-};
+}

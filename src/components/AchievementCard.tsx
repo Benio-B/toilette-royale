@@ -1,8 +1,8 @@
+import type { DivideIcon as LucideIcon } from 'lucide-react';
 import React from 'react';
-import { DivideIcon as LucideIcon } from 'lucide-react';
 
 interface Props {
-  icon: LucideIcon;
+  icon: typeof LucideIcon;
   title: string;
   brand: string;
   value: string | number;
@@ -16,9 +16,9 @@ export const AchievementCard: React.FC<Props> = ({
   brand,
   value,
   unit,
-  onAchievementClick
+  onAchievementClick,
 }) => (
-  <div 
+  <div
     className="bg-purple-50 p-4 rounded-lg transform hover:scale-105 transition-transform cursor-pointer h-full flex flex-col"
     onClick={onAchievementClick}
   >
@@ -27,7 +27,10 @@ export const AchievementCard: React.FC<Props> = ({
       <span>{title}</span>
     </div>
     <div className="mt-auto">
-      <p className="text-sm text-gray-600">{value}{unit}</p>
+      <p className="text-sm text-gray-600">
+        {value}
+        {unit}
+      </p>
       <p className="text-xl font-bold" title={brand}>{brand}</p>
     </div>
   </div>

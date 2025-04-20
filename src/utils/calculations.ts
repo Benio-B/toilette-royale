@@ -1,4 +1,4 @@
-import { ToiletPaper } from '../types';
+import type { ToiletPaper } from '../types';
 
 export interface BrandStats {
   brand: string;
@@ -16,7 +16,7 @@ export interface BrandStats {
   globalScore: number;
 }
 
-export const calculatePaperStats = (paper: ToiletPaper) => {
+export function calculatePaperStats(paper: ToiletPaper) {
   const costPerRoll = paper.price / paper.rollCount;
   const rollsPerEuro = paper.rollCount / paper.price;
   let duration = 0;
@@ -34,16 +34,17 @@ export const calculatePaperStats = (paper: ToiletPaper) => {
   }
 
   return { costPerRoll, duration, costPerDay, rollsPerDay, rollsPerEuro, daysPerEuro };
-};
+}
 
-const normalizeScore = (value: number, min: number, max: number, isHigherBetter: boolean): number => {
-  if (min === max) return 1;
-  return isHigherBetter 
+function normalizeScore(value: number, min: number, max: number, isHigherBetter: boolean): number {
+  if (min === max)
+    return 1;
+  return isHigherBetter
     ? (value - min) / (max - min)
     : (max - value) / (max - min);
-};
+}
 
-export const calculateGlobalScore = (stats: BrandStats[], stat: BrandStats) => {
+export function calculateGlobalScore(stats: BrandStats[], stat: BrandStats) {
   // Trouver les valeurs min et max pour chaque critère
   const costPerRolls = stats.map(s => s.costPerRoll);
   const minCostPerRoll = Math.min(...costPerRolls);
@@ -79,19 +80,19 @@ export const calculateGlobalScore = (stats: BrandStats[], stat: BrandStats) => {
 
   // Appliquer les pondérations
   return (
-    (costPerRollScore * 0.10) +   // Prix/rouleau (10%)
-    (rollsPerEuroScore * 0.10) +  // Rouleaux/€ (10%)
-    (daysPerEuroScore * 0.20) +   // Jours/€ (20%)
-    (ratingScore * 0.25) +        // Note (25%)
-    (costPerDayScore * 0.25) +    // Coût/jour (25%)
-    (rollsPerDayScore * 0.10)     // Rouleaux/jour (10%)
+    (costPerRollScore * 0.10) // Prix/rouleau (10%)
+    + (rollsPerEuroScore * 0.10) // Rouleaux/€ (10%)
+    + (daysPerEuroScore * 0.20) // Jours/€ (20%)
+    + (ratingScore * 0.25) // Note (25%)
+    + (costPerDayScore * 0.25) // Coût/jour (25%)
+    + (rollsPerDayScore * 0.10) // Rouleaux/jour (10%)
   ) * 100;
-};
+}
 
-export const calculateBrandStats = (completedPapers: ToiletPaper[]) => {
+export function calculateBrandStats(completedPapers: ToiletPaper[]) {
   const brandStats = completedPapers.reduce((acc: { [key: string]: BrandStats }, paper) => {
     const stats = calculatePaperStats(paper);
-    
+
     if (!acc[paper.brand]) {
       acc[paper.brand] = {
         brand: paper.brand,
@@ -106,7 +107,7 @@ export const calculateBrandStats = (completedPapers: ToiletPaper[]) => {
         totalDays: 0,
         rollsPerEuro: 0,
         daysPerEuro: 0,
-        globalScore: 0
+        globalScore: 0,
       };
     }
 
@@ -129,37 +130,31 @@ export const calculateBrandStats = (completedPapers: ToiletPaper[]) => {
   }, {});
 
   const brandStatsArray = Object.values(brandStats);
-  brandStatsArray.forEach(stat => {
+  brandStatsArray.forEach((stat) => {
     stat.globalScore = calculateGlobalScore(brandStatsArray, stat);
   });
 
   return brandStatsArray.sort((a, b) => b.globalScore - a.globalScore);
-};
+}
 
-export const findBestStats = (stats: BrandStats[]) => {
+export function findBestStats(stats: BrandStats[]) {
   return {
-    bestValue: stats.reduce((best, current) => 
-      current.costPerDay < best.costPerDay ? current : best
-    , stats[0]),
+    bestValue: stats.reduce((best, current) =>
+      current.costPerDay < best.costPerDay ? current : best, stats[0]),
 
-    bestRating: stats.reduce((best, current) => 
-      current.averageRating > best.averageRating ? current : best
-    , stats[0]),
+    bestRating: stats.reduce((best, current) =>
+      current.averageRating > best.averageRating ? current : best, stats[0]),
 
-    mostDurable: stats.reduce((best, current) => 
-      current.rollsPerDay < best.rollsPerDay ? current : best
-    , stats[0]),
+    mostDurable: stats.reduce((best, current) =>
+      current.rollsPerDay < best.rollsPerDay ? current : best, stats[0]),
 
-    bestCostPerRoll: stats.reduce((best, current) => 
-      current.costPerRoll < best.costPerRoll ? current : best
-    , stats[0]),
+    bestCostPerRoll: stats.reduce((best, current) =>
+      current.costPerRoll < best.costPerRoll ? current : best, stats[0]),
 
-    bestRollsPerEuro: stats.reduce((best, current) => 
-      current.rollsPerEuro > best.rollsPerEuro ? current : best
-    , stats[0]),
+    bestRollsPerEuro: stats.reduce((best, current) =>
+      current.rollsPerEuro > best.rollsPerEuro ? current : best, stats[0]),
 
-    bestDaysPerEuro: stats.reduce((best, current) => 
-      current.daysPerEuro > best.daysPerEuro ? current : best
-    , stats[0])
+    bestDaysPerEuro: stats.reduce((best, current) =>
+      current.daysPerEuro > best.daysPerEuro ? current : best, stats[0]),
   };
-};
+}

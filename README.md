@@ -8,8 +8,8 @@
 
 **Toilette Royale** est une app web qui pose les *vraies* questions 💭 :
 
-> 🧻 "Ce rouleau m’a-t-il vraiment duré aussi peu longtemps ?"  
-> 💸 "Est-ce que mon postérieur mérite mieux pour moins cher ?"  
+> 🧻 "Ce rouleau m’a-t-il vraiment duré aussi peu longtemps ?"
+> 💸 "Est-ce que mon postérieur mérite mieux pour moins cher ?"
 > 📈 "Et si je devenais le Warren Buffet du papier toilette ?"
 
 ---
@@ -51,13 +51,12 @@ Il faut entrer la date de début du paquet, la date de fin, la marque/modéle, p
   npm run build     # Pour builder l’app comme un château
 ```
 
-
 ## 📊 Fonctions prévues / en cours
 - Ajouter un pack de rouleaux usé (ou neuf, selon votre optimisme)
-- Suivi du nombre de jours par rouleau 
-- Calcul du coût quotidien 
-- Graphiques et stats en mode Excel pour le popotin 
-- Classement des marques les plus rentables 
+- Suivi du nombre de jours par rouleau
+- Calcul du coût quotidien
+- Graphiques et stats en mode Excel pour le popotin
+- Classement des marques les plus rentables
 - Et peut-être un mode sombre. Parce qu’on est pas des animaux.
 
 ## 😎 Pourquoi ?
