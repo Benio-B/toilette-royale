@@ -4,24 +4,30 @@ import { Stats } from '../components/Stats';
 import { getRepository } from '../repository/repository.ts';
 
 export function StatsPage() {
-  const [papers, setPapers] = useState<ToiletPaper[]>(() => {
-    const saved = getRepository().getToiletPapers();
-    return saved || [];
-  });
+  const [papers, setPapers] = useState<ToiletPaper[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      const saved = getRepository().getToiletPapers();
-      if (saved) {
-        setPapers(saved);
-      }
-    };
+    (async function () {
+      // TODO : fais 2 fois, pourquoi ?
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
+      setLoading(true);
+      const data = await getRepository().getToiletPapers();
+
+      setPapers(data || []);
+      setLoading(false);
+    }());
   }, []);
+
+  if (loading) {
+    // TODO améliorer les loadings
+    return (
+      <div>
+        <h1 className="text-2xl font-bold mb-6">Statistiques et comparaisons</h1>
+        Chargement en cours
+      </div>
+    );
+  }
 
   return (
     <div>

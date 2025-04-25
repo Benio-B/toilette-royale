@@ -21,9 +21,6 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-
-    const audio = new Audio('https://www.myinstants.com/media/sounds/paper-rip.mp3');
-    audio.play();
   };
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,8 +45,6 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
           && typeof paper.rating === 'number',
         )) {
           onImport(importedPapers);
-          const audio = new Audio('https://www.myinstants.com/media/sounds/paper-shuffle.mp3');
-          audio.play();
         }
         else {
           alert('Format de fichier invalide');

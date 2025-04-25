@@ -1,4 +1,5 @@
 import type { ToiletPaper } from '../types';
+import _ from 'lodash';
 import { useEffect, useState } from 'react';
 import { ImportExportButtons } from '../components/ImportExportButtons';
 import { ToiletPaperForm } from '../components/ToiletPaperForm';
@@ -6,30 +7,71 @@ import { ToiletPaperList } from '../components/ToiletPaperList';
 import { getRepository } from '../repository/repository.ts';
 
 export function ManagementPage() {
-  const [papers, setPapers] = useState<ToiletPaper[]>(() => {
-    const saved = getRepository().getToiletPapers();
-    return saved || [];
-  });
-
+  const [papers, setPapers] = useState<ToiletPaper[]>([]);
   const [editingPaper, setEditingPaper] = useState<ToiletPaper | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [updating, setUpdating] = useState<boolean>(false);
 
   useEffect(() => {
-    getRepository().savePapers({ papers });
-  }, [papers]);
+    (async function () {
+      // TODO fait 2 fois, pourquoi ?
+      setLoading(true);
+      const data = await getRepository().getToiletPapers();
 
-  const handleAdd = (paper: ToiletPaper) => {
-    setPapers([...papers, paper]);
+      setPapers(_.sortBy(data, 'startDate') || []);
+      setLoading(false);
+    }());
+  }, []);
+
+  const handleAdd = async (newPaper: ToiletPaper) => {
+    try {
+      setUpdating(true);
+      const updatingPapers = [newPaper, ...papers!];
+      await getRepository().savePapers({ papers: updatingPapers });
+
+      setPapers(updatingPapers);
+    }
+    catch (error) {
+      console.error('Erreur pendant l\'update', error);
+    }
+    finally {
+      setUpdating(false);
+    }
   };
 
-  const handleEdit = (paper: ToiletPaper) => {
-    setPapers(papers.map(p => (p.id === paper.id ? paper : p)));
-    setEditingPaper(null);
-  };
+  const handleEdit = async (paper: ToiletPaper) => {
+    try {
+      setUpdating(true);
+      const updatingPapers = papers.map(p => (p.id === paper.id ? paper : p));
+      await getRepository().savePapers({ papers: updatingPapers });
 
-  const handleDelete = (id: string) => {
-    setPapers(papers.filter(p => p.id !== id));
-    if (editingPaper?.id === id) {
+      setPapers(updatingPapers);
+    }
+    catch (error) {
+      console.error('Erreur pendant l\'update', error);
+    }
+    finally {
       setEditingPaper(null);
+      setUpdating(false);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      setUpdating(true);
+      const updatingPapers = papers.filter(p => p.id !== id);
+      await getRepository().savePapers({ papers: updatingPapers });
+
+      setPapers(updatingPapers);
+    }
+    catch (error) {
+      console.error('Erreur pendant l\'update', error);
+    }
+    finally {
+      if (editingPaper?.id === id) {
+        setEditingPaper(null);
+      }
+      setUpdating(false);
     }
   };
 
@@ -41,9 +83,37 @@ export function ManagementPage() {
     setEditingPaper(null);
   };
 
-  const handleImport = (importedPapers: ToiletPaper[]) => {
-    setPapers(importedPapers);
+  const handleImport = async (importedPapers: ToiletPaper[]) => {
+    try {
+      setUpdating(true);
+      await getRepository().savePapers({ papers: importedPapers });
+
+      setPapers(importedPapers);
+    }
+    catch (error) {
+      console.error('Erreur pendant l\'update', error);
+    }
+    finally {
+      setUpdating(false);
+    }
   };
+
+  if (loading) {
+    return (
+      <div>
+        <h1 className="text-2xl font-bold mb-6">Management</h1>
+        Chargement en cours
+      </div>
+    );
+  }
+  if (updating) {
+    return (
+      <div>
+        <h1 className="text-2xl font-bold mb-6">Management</h1>
+        Mise à jours en cours
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">

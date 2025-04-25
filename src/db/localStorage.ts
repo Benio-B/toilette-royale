@@ -1,17 +1,18 @@
 import type { Db, ToiletPaper } from '../types.ts';
+import _ from 'lodash';
 
 function getLocalStorageDb(): Db {
   return {
-    getToiletPapers: () => {
+    getToiletPapers: async () => {
       const papers = localStorage.getItem('toiletPapers');
 
-      if (!papers) {
+      if (_.isNil(papers)) {
         return undefined;
       }
 
       return JSON.parse(papers);
     },
-    savePapers: ({ papers }: { papers: ToiletPaper[] }) => localStorage.setItem('toiletPapers', JSON.stringify(papers)),
+    savePapers: async ({ papers }: { papers: ToiletPaper[] }) => localStorage.setItem('toiletPapers', JSON.stringify(papers)),
   };
 }
 

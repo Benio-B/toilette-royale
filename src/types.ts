@@ -15,6 +15,6 @@ export interface Stats {
 }
 
 export interface Db {
-  getToiletPapers: () => ToiletPaper[] | undefined;
-  savePapers: ({ papers }: { papers: ToiletPaper[] }) => void;
+  getToiletPapers: () => Promise<ToiletPaper[] | undefined>;
+  savePapers: ({ papers }: { papers: ToiletPaper[] }) => Promise<void>;
 }

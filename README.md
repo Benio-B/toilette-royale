@@ -70,3 +70,6 @@ Tu veux ajouter des emojis, des stats en plus, un mode multi-culs ?
 Les PRs sont bienvenues. Avec ou sans rouleau.
 
 _Toilette Royale – L’app qui transforme votre pause pipi en étude de marché_.
+
+// TODO utiliser jsonbin
+// TODO warning lint
