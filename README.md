@@ -43,6 +43,24 @@ Il faut entrer la date de début du paquet, la date de fin, la marque/modéle, p
 
 ---
 
+## Base de données
+Par défaut, le LocalStorage est utilisé. C'est bien pour tester mais c'est relou.
+Tu peux donc activer LA feature pour utiliser une DB externe pour une instance en local 😎
+
+### JsonBin - marche à suivre
+1. Créer un compte sur [JsonBin.io](https://jsonbin.io/) (c'est gratuit, vu le peu d'appel qu'on va faire)
+2. Créer un fichier .env
+3. Choper une MasterKey et une AccessKey et les mettre dans le fichier .env (⚠️rajouter des `\` avant chaque `$`):
+   - `VITE_JSONBIN_MASTER_KEY=\$XX\$XX\$XXXX`
+   - `VITE_JSONBIN_ACCESS_KEY=\$XX\$XX\$XXXX`
+4. Créer un Bin avec `[{}]` dedans
+5. Choper l'id du bin et le mettre dans le .env:
+   - `VITE_JSONBIN_ID=XXXX`
+6. Enfin activer la feature avec:
+   - `VITE_JSONBIN_USE=true`
+
+---
+
 ## 🛠️ Commandes de base
 
 ```bash
@@ -70,6 +88,3 @@ Tu veux ajouter des emojis, des stats en plus, un mode multi-culs ?
 Les PRs sont bienvenues. Avec ou sans rouleau.
 
 _Toilette Royale – L’app qui transforme votre pause pipi en étude de marché_.
-
-// TODO utiliser jsonbin
-// TODO warning lint

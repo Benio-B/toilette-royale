@@ -1,6 +1,7 @@
 import type { ToiletPaper } from '../types';
 import { Download, Upload } from 'lucide-react';
 import React, { useRef } from 'react';
+import toast from 'react-hot-toast';
 
 interface Props {
   papers: ToiletPaper[];
@@ -47,12 +48,12 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
           onImport(importedPapers);
         }
         else {
-          alert('Format de fichier invalide');
+          toast.error('Format de fichier invalide');
         }
       }
       catch (error) {
         console.error(error);
-        alert('Erreur lors de l\'importation du fichier');
+        toast.error('Erreur lors de l\'importation du fichier');
       }
     };
     reader.readAsText(file);

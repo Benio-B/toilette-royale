@@ -8,7 +8,7 @@ function getRepository({ db = getDb() }: { db?: Db } = {}) {
       const toiletPapers = await db.getToiletPapers();
 
       // TODO ajouter les stats ici au lieu de les calculer plus bas
-      return _.sortBy(toiletPapers, 'startDate') || [];
+      return toiletPapers ? _.sortBy(toiletPapers, 'startDate') : [];
     },
     savePapers: async ({ papers }: { papers: ToiletPaper[] }) => {
       await db.savePapers({ papers });

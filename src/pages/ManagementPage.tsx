@@ -16,8 +16,7 @@ export function ManagementPage() {
     (async function () {
       setLoading(true);
       const data = await getRepository().getToiletPapers();
-
-      setPapers(_.sortBy(data, 'startDate') || []);
+      setPapers(data ? _.sortBy(data, 'startDate') : []);
       setLoading(false);
     }());
   }, []);
