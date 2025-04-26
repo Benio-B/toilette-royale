@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+// TODO add test
 const envSchema = z
   .object({
     VITE_JSONBIN_USE: z.coerce.boolean().default(false),
