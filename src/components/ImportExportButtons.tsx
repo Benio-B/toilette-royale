@@ -53,7 +53,7 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
       }
       catch (error) {
         console.error(error);
-        toast.error('Erreur lors de l\'importation du fichier');
+        toast.error("Erreur lors de l'importation du fichier");
       }
     };
     reader.readAsText(file);

@@ -8,4 +8,5 @@ export default antfu({
   },
 }, { rules: {
   'no-alert': 'warn',
+  '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
 } });

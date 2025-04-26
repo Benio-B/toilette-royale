@@ -30,7 +30,7 @@ export function ManagementPage() {
       setPapers(updatingPapers);
     }
     catch (error) {
-      console.error('Erreur pendant l\'update', error);
+      console.error("Erreur pendant l'update", error);
     }
     finally {
       setUpdating(false);
@@ -46,7 +46,7 @@ export function ManagementPage() {
       setPapers(updatingPapers);
     }
     catch (error) {
-      console.error('Erreur pendant l\'update', error);
+      console.error("Erreur pendant l'update", error);
     }
     finally {
       setEditingPaper(null);
@@ -63,7 +63,7 @@ export function ManagementPage() {
       setPapers(updatingPapers);
     }
     catch (error) {
-      console.error('Erreur pendant l\'update', error);
+      console.error("Erreur pendant l'update", error);
     }
     finally {
       if (editingPaper?.id === id) {
@@ -89,7 +89,7 @@ export function ManagementPage() {
       setPapers(importedPapers);
     }
     catch (error) {
-      console.error('Erreur pendant l\'update', error);
+      console.error("Erreur pendant l'update", error);
     }
     finally {
       setUpdating(false);

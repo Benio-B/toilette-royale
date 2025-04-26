@@ -39,7 +39,7 @@ function getJsonDb(): Db {
       }
       catch (err) {
         console.error(err);
-        toast.error('Quelque chose s\'est mal passé pendant la récupération de tes PQs 🤔');
+        toast.error("Quelque chose s'est mal passé pendant la récupération de tes PQs 🤔");
         return undefined;
       }
     },
@@ -64,7 +64,7 @@ function getJsonDb(): Db {
       }
       catch (err) {
         console.error(err);
-        toast.error('Quelque chose s\'est mal passé pendant la sauvegarde de tes PQs 🤯');
+        toast.error("Quelque chose s'est mal passé pendant la sauvegarde de tes PQs 🤯");
       }
     },
   };
