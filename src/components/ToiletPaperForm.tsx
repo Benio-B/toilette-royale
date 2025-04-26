@@ -51,9 +51,9 @@ export const ToiletPaperForm: React.FC<Props> = ({
         price: initialPaper.price.toString(),
         rollCount: initialPaper.rollCount.toString(),
         startDate: formatDateTimeLocal(initialPaper.startDate),
-        endDate: initialPaper.endDate
-          ? formatDateTimeLocal(initialPaper.endDate)
-          : '',
+        endDate: initialPaper.endDate ?
+            formatDateTimeLocal(initialPaper.endDate) :
+          '',
         rating: initialPaper.rating,
       });
     }
@@ -176,9 +176,9 @@ export const ToiletPaperForm: React.FC<Props> = ({
               <Star
                 key={rating}
                 className={`h-6 w-6 cursor-pointer transition-all hover:scale-125 ${
-                  rating <= formData.rating
-                    ? 'fill-yellow-400 text-yellow-400'
-                    : 'text-gray-300'
+                  rating <= formData.rating ?
+                    'fill-yellow-400 text-yellow-400' :
+                    'text-gray-300'
                 }`}
                 onClick={() => {
                   setFormData({ ...formData, rating });

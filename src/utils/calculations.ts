@@ -39,9 +39,9 @@ export function calculatePaperStats(paper: ToiletPaper) {
 function normalizeScore(value: number, min: number, max: number, isHigherBetter: boolean): number {
   if (min === max)
     return 1;
-  return isHigherBetter
-    ? (value - min) / (max - min)
-    : (max - value) / (max - min);
+  return isHigherBetter ?
+      (value - min) / (max - min) :
+      (max - value) / (max - min);
 }
 
 export function calculateGlobalScore(stats: BrandStats[], stat: BrandStats) {
@@ -80,12 +80,12 @@ export function calculateGlobalScore(stats: BrandStats[], stat: BrandStats) {
 
   // Appliquer les pondérations
   return (
-    (costPerRollScore * 0.10) // Prix/rouleau (10%)
-    + (rollsPerEuroScore * 0.10) // Rouleaux/€ (10%)
-    + (daysPerEuroScore * 0.20) // Jours/€ (20%)
-    + (ratingScore * 0.25) // Note (25%)
-    + (costPerDayScore * 0.25) // Coût/jour (25%)
-    + (rollsPerDayScore * 0.10) // Rouleaux/jour (10%)
+    (costPerRollScore * 0.10) + // Prix/rouleau (10%)
+    (rollsPerEuroScore * 0.10) + // Rouleaux/€ (10%)
+    (daysPerEuroScore * 0.20) + // Jours/€ (20%)
+    (ratingScore * 0.25) + // Note (25%)
+    (costPerDayScore * 0.25) + // Coût/jour (25%)
+    (rollsPerDayScore * 0.10) // Rouleaux/jour (10%)
   ) * 100;
 }
 

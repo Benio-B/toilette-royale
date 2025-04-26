@@ -82,9 +82,9 @@ export const ToiletPaperList: React.FC<Props> = ({
                 <Star
                   key={rating}
                   className={`h-4 w-4 ${
-                    rating <= paper.rating
-                      ? 'fill-yellow-400 text-yellow-400'
-                      : 'text-gray-300'
+                    rating <= paper.rating ?
+                      'fill-yellow-400 text-yellow-400' :
+                      'text-gray-300'
                   }`}
                 />
               ))}

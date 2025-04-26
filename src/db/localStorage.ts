@@ -12,7 +12,8 @@ function getLocalStorageDb(): Db {
 
       return JSON.parse(papers);
     },
-    savePapers: async ({ papers }: { papers: ToiletPaper[] }) => localStorage.setItem('toiletPapers', JSON.stringify(papers)),
+    saveToiletPapers: async ({ papers }: { papers: ToiletPaper[] }) =>
+      localStorage.setItem('toiletPapers', JSON.stringify(papers)),
   };
 }
 

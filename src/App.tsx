@@ -24,11 +24,11 @@ function Navigation() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 rounded-md hover:bg-purple-50"
           >
-            {isMenuOpen
-              ? (
+            {isMenuOpen ?
+                (
                   <X className="h-6 w-6 text-purple-600" />
-                )
-              : (
+                ) :
+                (
                   <Menu className="h-6 w-6 text-purple-600" />
                 )}
           </button>
@@ -38,9 +38,9 @@ function Navigation() {
             <Link
               to="/stats"
               className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
-                location.pathname === '/stats'
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
+                location.pathname === '/stats' ?
+                  'bg-purple-100 text-purple-700' :
+                  'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
               }`}
             >
               <BarChart3 className="h-5 w-5" />
@@ -49,9 +49,9 @@ function Navigation() {
             <Link
               to="/manage"
               className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
-                location.pathname === '/manage'
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
+                location.pathname === '/manage' ?
+                  'bg-purple-100 text-purple-700' :
+                  'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
               }`}
             >
               <ClipboardList className="h-5 w-5" />
@@ -70,9 +70,9 @@ function Navigation() {
             <Link
               to="/stats"
               className={`flex items-center gap-2 px-4 py-3 rounded-md transition-colors w-full ${
-                location.pathname === '/stats'
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
+                location.pathname === '/stats' ?
+                  'bg-purple-100 text-purple-700' :
+                  'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
               }`}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -82,9 +82,9 @@ function Navigation() {
             <Link
               to="/manage"
               className={`flex items-center gap-2 px-4 py-3 rounded-md transition-colors w-full ${
-                location.pathname === '/manage'
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
+                location.pathname === '/manage' ?
+                  'bg-purple-100 text-purple-700' :
+                  'text-gray-600 hover:bg-purple-50 hover:text-purple-600'
               }`}
               onClick={() => setIsMenuOpen(false)}
             >

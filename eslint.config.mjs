@@ -9,4 +9,6 @@ export default antfu({
 }, { rules: {
   'no-alert': 'warn',
   '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
+  '@stylistic/max-len': ['error', { code: 120, ignoreStrings: false, ignorePattern: 'className=' }],
+  '@stylistic/operator-linebreak': ['error', 'after'],
 } });

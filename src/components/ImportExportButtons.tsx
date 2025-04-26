@@ -36,14 +36,14 @@ export const ImportExportButtons: React.FC<Props> = ({ papers, onImport }) => {
         const importedPapers = JSON.parse(content);
 
         if (Array.isArray(importedPapers) && importedPapers.every(paper =>
-          typeof paper === 'object'
-          && typeof paper.id === 'string'
-          && typeof paper.brand === 'string'
-          && typeof paper.price === 'number'
-          && typeof paper.rollCount === 'number'
-          && typeof paper.startDate === 'string'
-          && (paper.endDate === null || typeof paper.endDate === 'string')
-          && typeof paper.rating === 'number',
+          typeof paper === 'object' &&
+          typeof paper.id === 'string' &&
+          typeof paper.brand === 'string' &&
+          typeof paper.price === 'number' &&
+          typeof paper.rollCount === 'number' &&
+          typeof paper.startDate === 'string' &&
+          (paper.endDate === null || typeof paper.endDate === 'string') &&
+          typeof paper.rating === 'number',
         )) {
           onImport(importedPapers);
         }

@@ -25,7 +25,7 @@ export function ManagementPage() {
     try {
       setUpdating(true);
       const updatingPapers = [newPaper, ...papers!];
-      await getRepository().savePapers({ papers: updatingPapers });
+      await getRepository().saveToiletPapers({ papers: updatingPapers });
 
       setPapers(updatingPapers);
     }
@@ -41,7 +41,7 @@ export function ManagementPage() {
     try {
       setUpdating(true);
       const updatingPapers = papers.map(p => (p.id === paper.id ? paper : p));
-      await getRepository().savePapers({ papers: updatingPapers });
+      await getRepository().saveToiletPapers({ papers: updatingPapers });
 
       setPapers(updatingPapers);
     }
@@ -58,7 +58,7 @@ export function ManagementPage() {
     try {
       setUpdating(true);
       const updatingPapers = papers.filter(p => p.id !== id);
-      await getRepository().savePapers({ papers: updatingPapers });
+      await getRepository().saveToiletPapers({ papers: updatingPapers });
 
       setPapers(updatingPapers);
     }
@@ -84,7 +84,7 @@ export function ManagementPage() {
   const handleImport = async (importedPapers: ToiletPaper[]) => {
     try {
       setUpdating(true);
-      await getRepository().savePapers({ papers: importedPapers });
+      await getRepository().saveToiletPapers({ papers: importedPapers });
 
       setPapers(importedPapers);
     }

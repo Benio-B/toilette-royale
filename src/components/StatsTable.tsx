@@ -149,8 +149,8 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                   <div className="flex items-center gap-1">
                     {stat.costPerRoll.toFixed(2)}
                     €
-                    {stat.costPerRoll
-                      === bestStats.bestCostPerRoll.costPerRoll && (
+                    {stat.costPerRoll ===
+                      bestStats.bestCostPerRoll.costPerRoll && (
                       <TrendingDown className="w-4 h-4 text-green-500" />
                     )}
                   </div>
@@ -158,8 +158,8 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     {stat.rollsPerEuro.toFixed(2)}
-                    {stat.rollsPerEuro
-                      === bestStats.bestRollsPerEuro.rollsPerEuro && (
+                    {stat.rollsPerEuro ===
+                      bestStats.bestRollsPerEuro.rollsPerEuro && (
                       <TrendingUp className="w-4 h-4 text-green-500" />
                     )}
                   </div>
@@ -167,8 +167,8 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     {stat.daysPerEuro.toFixed(1)}
-                    {stat.daysPerEuro
-                      === bestStats.bestDaysPerEuro.daysPerEuro && (
+                    {stat.daysPerEuro ===
+                      bestStats.bestDaysPerEuro.daysPerEuro && (
                       <TrendingUp className="w-4 h-4 text-green-500" />
                     )}
                   </div>
@@ -176,8 +176,8 @@ export const StatsTable: React.FC<Props> = ({ stats, bestStats }) => {
                 <td className="py-2 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     {stat.averageRating.toFixed(1)}
-                    {stat.averageRating
-                      === bestStats.bestRating.averageRating && (
+                    {stat.averageRating ===
+                      bestStats.bestRating.averageRating && (
                       <TrendingUp className="w-4 h-4 text-green-500" />
                     )}
                   </div>
