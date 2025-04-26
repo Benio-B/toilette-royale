@@ -11,6 +11,7 @@ function getJsonDb(): Db {
         return papersCache;
       }
       // TODO: mettre les appels HTTP dans un service
+      // TODO try catch
       const res = await fetch(`${config.VITE_JSONBIN_ROOT_URL}/b/${config.VITE_JSONBIN_ID}/latest`, {
         method: 'GET',
         headers: {

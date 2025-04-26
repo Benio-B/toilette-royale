@@ -100,7 +100,11 @@ function Navigation() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+    }}
+    >
       <div className="min-h-screen bg-purple-50">
         <Navigation />
         <div className="container mx-auto px-4 pb-8">

@@ -9,8 +9,6 @@ export function StatsPage() {
 
   useEffect(() => {
     (async function () {
-      // TODO : fais 2 fois, pourquoi ?
-
       setLoading(true);
       const data = await getRepository().getToiletPapers();
 

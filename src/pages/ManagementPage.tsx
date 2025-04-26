@@ -14,7 +14,6 @@ export function ManagementPage() {
 
   useEffect(() => {
     (async function () {
-      // TODO fait 2 fois, pourquoi ?
       setLoading(true);
       const data = await getRepository().getToiletPapers();
 
