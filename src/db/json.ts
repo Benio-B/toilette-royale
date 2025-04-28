@@ -31,7 +31,8 @@ function getJsonDb(): Db {
     },
     saveToiletPapers: async ({ papers }: { papers: ToiletPaper[] }) => {
       try {
-        papersCache = await saveToiletPapers({ papers });
+        await saveToiletPapers({ papers });
+        papersCache = papers;
       }
       catch (err) {
         console.error(err);
