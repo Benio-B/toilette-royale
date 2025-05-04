@@ -3,7 +3,7 @@ import { z } from 'zod';
 // TODO add test
 const envSchema = z
   .object({
-    VITE_JSONBIN_USE: z.coerce.boolean().default(false),
+    VITE_JSONBIN_USE: z.enum(['true', 'false']).transform(value => value === 'true').default('false'),
     VITE_JSONBIN_ROOT_URL: z.string().url().default('https://api.jsonbin.io/v3'),
     VITE_JSONBIN_MASTER_KEY: z.string().optional(),
     VITE_JSONBIN_ACCESS_KEY: z.string().optional(),
