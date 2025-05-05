@@ -98,6 +98,34 @@ function Navigation() {
   );
 }
 
+function Footer() {
+  return (
+    <footer className="flex w-full flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 border-t border-blue-gray-50 py-6 text-center md:justify-between">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+          <div className="text-gray-500">
+            &copy; 2025 Benio
+          </div>
+          <div className="text-gray-500">
+            v0.1.2
+          </div>
+          <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
+            <li>
+              <a
+                href="https://github.com/Benio-B/toilette-royale"
+                className="text-gray-500 transition-colors hover:text-purple-500 focus:text-purple-500"
+              >
+                GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </footer>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter future={{
@@ -114,6 +142,7 @@ function App() {
             <Route path="/stats" element={<StatsPage />} />
           </Routes>
         </div>
+        <Footer />
       </div>
     </BrowserRouter>
   );
