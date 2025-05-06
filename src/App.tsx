@@ -107,7 +107,7 @@ function Footer() {
             &copy; 2025 Benio
           </div>
           <div className="text-gray-500">
-            v0.1.2
+            v0.1.3
           </div>
           <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
             <li>
