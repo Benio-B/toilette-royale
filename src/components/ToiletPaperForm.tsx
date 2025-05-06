@@ -1,6 +1,7 @@
 import type { ToiletPaper } from '../types';
 import { Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   onSubmit: (paper: ToiletPaper) => void;
@@ -65,7 +66,7 @@ export const ToiletPaperForm: React.FC<Props> = ({
     const endDateTime = formData.endDate ? new Date(formData.endDate) : null;
 
     onSubmit({
-      id: initialPaper?.id || crypto.randomUUID(),
+      id: initialPaper?.id || uuidv4(),
       brand: formData.brand,
       price: Number(formData.price),
       rollCount: Number(formData.rollCount),
